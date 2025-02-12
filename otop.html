@@ -492,9 +492,8 @@ h1 {
             let nomorTeleponSpan = document.getElementById("nomorTelepon");
 
             if (localStorage.getItem("nomorTelepon")) {
-                nomorTeleponSpan.textContent = "+62" + localStorage.getItem("nomorTelepon");
+    nomorTeleponSpan.textContent = "+62" + localStorage.getItem("nomorTelepon");
             }
-        });
 
         document.getElementById("userForm").addEventListener("submit", function (event) {
             event.preventDefault(); // Mencegah form langsung submit

